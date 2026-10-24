@@ -26,7 +26,7 @@ options = struct('n_it_max', 100, 'n_accept', 80, 'method', 'gibbs sampling', 'g
 result  = bayes_nca(W_data, W_signs, Y_mean, Y_std, A_prior_mean, A_prior_std, B_prior_mean, B_prior_std, options);
 
 figure(1); 
-bayes_nca_graphics(A_prior_mean, B_prior_mean, Y_mean, A_true, B_true, Y_true);
+bayes_nca_graphics(A_prior_mean, B_prior_mean, Y_mean, A_true, B_true, Y_true, result.ssr_Y);
 
 figure(2); 
-bayes_nca_graphics(A_prior_mean, B_prior_mean, Y_mean, result.A_post_mean, result.B_post_mean, result.Ypred);
+bayes_nca_graphics(A_prior_mean, B_prior_mean, Y_mean, result.A_post_mean, result.B_post_mean, result.Y_pred);

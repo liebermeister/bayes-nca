@@ -8,8 +8,8 @@
 %
 % see bayes_nca
 
-function [A_post_mean, A_post_std] = bayes_nca_A(B, W_data, W_signs, Y_mean, Y_std, A_prior_mean, A_prior_std, A_max_abs, A_min_abs);
-
+function [A_post_mean, A_post_std] = bayes_nca_A(B, W_data, W_signs, Y_mean, Y_std, A_prior_mean, A_prior_std, A_max_abs, A_min_abs); 
+  
 nr          = size(A_prior_mean,1);
 A_post_mean = zeros(size(A_prior_mean));
 A_post_std  = zeros(size(A_prior_mean));
@@ -37,8 +37,10 @@ for it = 1:nr,
   %  opt = cplexoptimset('Display','off'); 
   %  A_post_mean(it,ind_rel) = cplexqp(M, f, M_ineq, b_ineq,[],[],[],[],[],opt );
   %else
-    opt = optimset('LargeScale','off','Algorithm','active-set','Display','off'); 
+  opt = optimset('LargeScale','off','Algorithm','interior-point-convex','Display','off');
+  if length(ind_rel),
     A_post_mean(it,ind_rel) = quadprog(M, f, M_ineq, b_ineq,[],[],[],[],[],opt );
+  end
   %end
 
   if nargout > 1
