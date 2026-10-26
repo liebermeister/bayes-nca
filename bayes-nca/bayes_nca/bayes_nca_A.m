@@ -33,15 +33,10 @@ for it = 1:nr,
   M         = 0.5 * [M+M']; 
   f         = - [B_rel * Cx_inv * x_mean' +  Ca_inv * a_mean'];
 
-  %if exist('cplexqp','file'),
-  %  opt = cplexoptimset('Display','off'); 
-  %  A_post_mean(it,ind_rel) = cplexqp(M, f, M_ineq, b_ineq,[],[],[],[],[],opt );
-  %else
   opt = optimset('LargeScale','off','Algorithm','interior-point-convex','Display','off');
   if length(ind_rel),
     A_post_mean(it,ind_rel) = quadprog(M, f, M_ineq, b_ineq,[],[],[],[],[],opt );
   end
-  %end
 
   if nargout > 1
     A_post_std(it, ind_rel) = sqrt(diag(inv(M)));
