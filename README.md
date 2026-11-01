@@ -1,6 +1,8 @@
 Matlab functions for Bayesian Network Component Analysis
 ========================================================
 
+Note: For older, more basic code see the Matlab toolbox for Network Component Analysis
+
 ## Dependencies:
 
   o Matlab utility functions    (https://github.com/liebermeister/matlab-utils)
